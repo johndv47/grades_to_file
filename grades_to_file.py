@@ -1,20 +1,21 @@
-# fig03_02.py
-"""Class average program with sentinel-controlled iteration."""
-# initialization phase
-total = 0  # sum of grades
-grade_counter = 0 # number of grades entered
+try:
+    # Creates grades.txt in CWD and interacts in write mode.
+    with open("grades.txt", mode="w") as file:
+        grade = int(input("Enter grade, -1 to end: "))  # get one grade
 
-# processing phase
-grade = int(input('Enter grade, -1 to end: '))  # get one grade
+        # While loop checks for sentinel value input
+        while grade != -1:
+            # Grade is written to the file (grades.txt)
+            file.write(str(grade) + "\n")
 
-while grade != -1:
-     total += grade
-     grade_counter += 1
-     grade = int(input('Enter grade, -1 to end: '))
+            # Prompts user again for input
+            grade = int(input("Enter grade, -1 to end: "))
 
- # termination phase
- if grade_counter != 0:
-     average = total / grade_counter
-     print(f'Class average is {average:.2f}')
- else:
-     print('No grades were entered')
+        else:
+            print(
+                "\nAll entered grades were saved to grades.txt file in your current directory."
+            )
+
+# Error handling - verifies user input is only digits.
+except ValueError:
+    print("\nPlease enter only digits.")
